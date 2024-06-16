@@ -1,6 +1,7 @@
 import { Button, Form, Input, Modal, Space } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { TasksActions } from '../Pages/Tasks/Store/Tasks.slice';
+import UrgencyInput from './UrgencyInput';
 
 const CreateModal = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const CreateModal = () => {
         >
             <Input.TextArea />
         </Form.Item>
+        <UrgencyInput />
       </div>  
       </Modal>
     </>
