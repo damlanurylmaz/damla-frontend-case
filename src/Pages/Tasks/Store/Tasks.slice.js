@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     todos: {},
-    isOpenCreateModal: false
+    isOpenCreateModal: false,
+    isOpenEditModal: false
 };
 
 const tasksSlice = createSlice({
@@ -14,6 +15,9 @@ const tasksSlice = createSlice({
     },
     setIsOpenCreateModal: (state, action) => {
       state.isOpenCreateModal = action.payload
+    },
+    setIsOpenEditModal: (state, action) => {
+      state.isOpenEditModal = action.payload
     }
   },
 })

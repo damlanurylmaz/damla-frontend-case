@@ -5,34 +5,49 @@ import TextInput from './Input/TextInput';
 import SelectInput from './Input/SelectInput';
 
 const urgencyOptions = [
-  {
-      value: '1',
-      label: 'Urgent',
-  },
-  {
-      value: '2',
-      label: 'High',
-  },
-  {
-      value: '3',
-      label: 'Low',
-  }
+    {
+        value: '1',
+        label: 'Urgent',
+    },
+    {
+        value: '2',
+        label: 'High',
+    },
+    {
+        value: '3',
+        label: 'Low',
+    }
 ];
 
-const CreateModal = () => {
+const statusOptions = [
+    {
+        value: '1',
+        label: 'New',
+    },
+    {
+        value: '2',
+        label: 'Inprogress',
+    },
+    {
+        value: '3',
+        label: 'Done',
+    }
+];
+
+const EditModal = () => {
   const dispatch = useDispatch();
-  const isOpenCreateModal = useSelector((state) => state.tasks.isOpenCreateModal);
+  const isOpenEditModal = useSelector((state) => state.tasks.isOpenEditModal);
 
   const handleOk = () => {
-    dispatch(TasksActions.setIsOpenCreateModal(false));
+    dispatch(TasksActions.setIsOpenEditModal(false));
   };
   const handleCancel = () => {
-    dispatch(TasksActions.setIsOpenCreateModal(false));
+    dispatch(TasksActions.setIsOpenEditModal(false));
   };
   return (
     <>
       <Modal
-        open={isOpenCreateModal}
+        open={isOpenEditModal}
         title="Create New Task"
         onOk={handleOk}
         onCancel={handleCancel}
@@ -44,7 +59,7 @@ const CreateModal = () => {
         )}
       >
       <div className='form-container'>
-      <TextInput
+        <TextInput 
             label='Title'
             required
         />
@@ -57,9 +72,14 @@ const CreateModal = () => {
             options={urgencyOptions}
             required
         />
+        <SelectInput
+            label='Change Status'
+            options={statusOptions}
+            required={false}
+        />
       </div>  
       </Modal>
     </>
   );
 };
-export default CreateModal;
+export default EditModal;

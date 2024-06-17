@@ -1,0 +1,42 @@
+.tasks-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .header {
+      margin-bottom: 20px;
+    }
+    .add-new-task {
+      margin-bottom: 20px;
+    }
+    .task-card-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+  }
+
+.task-contain {
+    gap: 30px;
+    margin-top: 20px; 
+    border: 1px solid #484747;
+    padding: 15px;
+    border-radius: 10px;
+    .task-status {
+        margin-bottom: 10px;
+    }
+    .task-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title {
+            font-weight: bold;
+            }
+    }
+    .task-date {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+  
