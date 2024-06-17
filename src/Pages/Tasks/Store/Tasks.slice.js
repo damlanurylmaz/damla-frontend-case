@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    todos: {},
+    tasks: [],
     isOpenCreateModal: false,
     isOpenEditModal: false
 };
@@ -10,8 +10,11 @@ const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    setTodos: (state, action) => {
-        state.todos = action.payload
+    setTasks: (state, action) => {
+      state.tasks = action.payload
+    },
+    addTask: (state, action) => {
+      state.tasks.unshift(action.payload)
     },
     setIsOpenCreateModal: (state, action) => {
       state.isOpenCreateModal = action.payload

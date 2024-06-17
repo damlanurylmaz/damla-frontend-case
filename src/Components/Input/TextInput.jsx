@@ -1,16 +1,14 @@
-import { Form, Input } from 'antd'
+import { Form, Input, Typography } from 'antd'
 
 const TextInput = ({label, value, onChange, required}) => {
 
+  console.log(value, label);
+
   return (
-    <Form.Item
-        layout="vertical"
-        label={label}
-        name={label}
-        rules={[{ required }]}
-    >
+    <div>
+        <Typography> { label } </Typography>
         <Input value={value} onChange={onChange} />
-    </Form.Item>
+    </div>
   )
 }
 

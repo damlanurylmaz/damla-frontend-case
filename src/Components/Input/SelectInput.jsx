@@ -1,7 +1,7 @@
 import { Select } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
 
-const SelectInput = ({label, options, required}) => {
+const SelectInput = ({label, options, required, onChange, value}) => {
   return (
     <FormItem 
         label={label} 
@@ -20,6 +20,8 @@ const SelectInput = ({label, options, required}) => {
             (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
             }
             options={options}
+            onChange={onChange}
+            value={value}
         />
     </FormItem>
   )
