@@ -77,8 +77,6 @@ const CreateModal = () => {
     setFormValue({...formValue, [key]: value});
   };
 
-  console.log(formValue)
-
   return (
     <>
       <Modal

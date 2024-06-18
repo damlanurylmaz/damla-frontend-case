@@ -2,8 +2,6 @@ import { Form, Input, Typography } from 'antd'
 
 const TextInput = ({label, value, onChange, required, error}) => {
 
-  console.log(value, label);
-
   return (
     <div>
         <Typography> { label } </Typography>

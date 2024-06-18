@@ -23,7 +23,6 @@ import Tasks from '../Pages/Tasks/Tasks';
   } = theme.useToken();
 
   const handleClick = (item) => {
-    console.log(item)
     switch (item.key) {
       case '1':
         setContent(<Tasks />)
