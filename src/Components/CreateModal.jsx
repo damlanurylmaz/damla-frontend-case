@@ -4,6 +4,7 @@ import { TasksActions } from '../Pages/Tasks/Store/Tasks.slice';
 import TextInput from './Input/TextInput';
 import SelectInput from './Input/SelectInput';
 import { useState } from 'react';
+import '../Pages/Tasks/Style/Tasks.scss';
 
 const urgencyOptions = [
   {
@@ -23,17 +24,51 @@ const urgencyOptions = [
 const CreateModal = () => {
   const dispatch = useDispatch();
   const isOpenCreateModal = useSelector((state) => state.tasks.isOpenCreateModal);
+  const [errors, setErrors] = useState({
+    title: '',
+    description: '',
+    urgency: ''
+  });
+  
   const [formValue, setFormValue] = useState({
     title: '',
     description: '',
     urgency: ''
   })
 
-  const handleOk = () => {
-    dispatch(TasksActions.setIsOpenCreateModal(false));
-    dispatch(TasksActions.addTask({...formValue, id:  crypto.randomUUID(),  status: 'New', date: Date()}));
-    setFormValue({title: '', description: '', urgency: ''})
+  const validateFormValue = () => {
+    const errors = {};
+    if(formValue.title === '') {
+      errors.title = 'Cannot be empty!'
+    } else {
+      errors.title = ''
+    }
+
+    if(formValue.description === '') {
+      errors.description = 'Cannot be empty!'
+    }
+    else {
+      errors.description = ''
+    }
+
+    if(formValue.urgency === '') {
+      errors.urgency = 'Cannot be empty!'
+    } else {
+      errors.urgency = ''
+    }
+    setErrors(errors);
+    return errors;
   };
+
+  const handleOk = () => {
+    const errorsData = validateFormValue();
+    if(errorsData.title === '' && errorsData.description === '' && errorsData.urgency === '') {
+      dispatch(TasksActions.setIsOpenCreateModal(false));
+      dispatch(TasksActions.addTask({...formValue, id:  crypto.randomUUID(),  status: 'New', date: Date()}));
+      setFormValue({title: '', description: '', urgency: ''});
+    }
+  };
+  
   const handleCancel = () => {
     dispatch(TasksActions.setIsOpenCreateModal(false));
   };
@@ -59,17 +94,19 @@ const CreateModal = () => {
         )}
       >
       <div className='form-container'>
-      <TextInput
+        <TextInput
             label='Title'
             required
             value={formValue.title}
             onChange={(e) => handleFormValue('title', e.target.value)}
+            error={errors.title}
         />
         <TextInput 
             label='Description'
             required
             value={formValue.description}
             onChange={(e) => handleFormValue('description', e.target.value)}
+            error={errors.description}
         />
         <SelectInput
             label='Urgency'
@@ -77,6 +114,7 @@ const CreateModal = () => {
             required
             value={formValue.urgency}
             onChange={(val) => handleFormValue('urgency', urgencyOptions.find((option) => option.value === val).label)}
+            error={errors.urgency}
         />
       </div>  
       </Modal>

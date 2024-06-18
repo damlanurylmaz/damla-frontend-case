@@ -1,7 +1,7 @@
 import { Select } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
 
-const SelectInput = ({label, options, required, onChange, value}) => {
+const SelectInput = ({label, options, required, onChange, value, error}) => {
   return (
     <FormItem 
         label={label} 
@@ -19,7 +19,9 @@ const SelectInput = ({label, options, required, onChange, value}) => {
             options={options}
             onChange={onChange}
             value={value}
+            status={error ? 'error' : ''}
         />
+        { error && <p className='error-message'>{error}</p> }
     </FormItem>
   )
 }

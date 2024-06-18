@@ -1,13 +1,14 @@
 import { Form, Input, Typography } from 'antd'
 
-const TextInput = ({label, value, onChange, required}) => {
+const TextInput = ({label, value, onChange, required, error}) => {
 
   console.log(value, label);
 
   return (
     <div>
         <Typography> { label } </Typography>
-        <Input value={value} onChange={onChange} />
+        <Input status={error !== '' ? 'error' : ''} value={value} onChange={onChange} />
+        { error && <p style={{color: 'red'}}>{error}</p> }
     </div>
   )
 }

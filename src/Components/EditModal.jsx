@@ -39,16 +39,50 @@ const EditModal = () => {
   const dispatch = useDispatch();
   const isOpenEditModal = useSelector((state) => state.tasks.isOpenEditModal);
   const editedTask = useSelector((state) => state.tasks.editedTask);
+  const [errors, setErrors] = useState({
+    title: '',
+    description: '',
+    urgency: ''
+  });
+
   const [formValue, setFormValue] = useState({
     title: '',
     description: '',
     urgency: '',
     status: ''
-  })
+  });
+
+  const validateFormValue = () => {
+    const errors = {};
+    if(formValue.title === '') {
+      errors.title = 'Cannot be empty!'
+    } else {
+      errors.title = ''
+    }
+
+    if(formValue.description === '') {
+      errors.description = 'Cannot be empty!'
+    }
+    else {
+      errors.description = ''
+    }
+
+    if(formValue.urgency === '') {
+      errors.urgency = 'Cannot be empty!'
+    } else {
+      errors.urgency = ''
+    }
+    setErrors(errors);
+    return errors;
+  };
+
 
   const handleOk = () => {
-    dispatch(TasksActions.setIsOpenEditModal(false));
-    dispatch(TasksActions.updateTask({...editedTask, ...formValue}));
+    const errorsData = validateFormValue();
+    if(errorsData.title === '' && errorsData.description === '' && errorsData.urgency === '') {
+      dispatch(TasksActions.setIsOpenEditModal(false));
+      dispatch(TasksActions.updateTask({...editedTask, ...formValue}));
+    }
   };
 
   const handleCancel = () => {
@@ -75,7 +109,7 @@ const EditModal = () => {
     <>
       <Modal
         open={isOpenEditModal}
-        title="Create New Task"
+        title="Detail and Edit Task"
         onOk={handleOk}
         onCancel={handleCancel}
         footer={(_, { OkBtn, CancelBtn }) => (
@@ -91,12 +125,14 @@ const EditModal = () => {
             required
             value={formValue.title}
             onChange={(e) => handleFormValue('title', e.target.value)}
+            error={errors.title}
         />
         <TextInput 
             label='Description'
             required
             value={formValue.description}
             onChange={(e) => handleFormValue('description', e.target.value)}
+            error={errors.description}
         />
         <SelectInput
             label='Urgency'
@@ -104,6 +140,7 @@ const EditModal = () => {
             required
             value={formValue.urgency}
             onChange={(val) => handleFormValue('urgency', urgencyOptions.find((option) => option.value === val).label)}
+            error={errors.urgency}
         />
         <SelectInput
             label='Change Status'
