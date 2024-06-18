@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import '../Pages/Tasks/Style/Tasks.scss';
-import { useSelector } from 'react-redux';
 import { TasksActions } from '../Pages/Tasks/Store/Tasks.slice';
 import { Draggable } from 'react-beautiful-dnd';
+import PropTypes from "prop-types"
 
 const TaskCard = ({task}) => {
   const dispatch = useDispatch();
@@ -40,3 +40,7 @@ const TaskCard = ({task}) => {
 }
 
 export default TaskCard
+
+TaskCard.propTypes = {
+  task: PropTypes.object.isRequired
+}

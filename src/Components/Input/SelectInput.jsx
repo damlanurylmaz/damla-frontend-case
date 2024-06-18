@@ -1,12 +1,12 @@
 import { Select } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
+import PropTypes from "prop-types"
 
-const SelectInput = ({label, options, required, onChange, value, error}) => {
+const SelectInput = ({label, options, onChange, value, error}) => {
   return (
     <FormItem 
         label={label} 
-        layout='vertical' 
-        required={required}
+        layout='vertical'
     >
         <Select
             showSearch
@@ -27,3 +27,11 @@ const SelectInput = ({label, options, required, onChange, value, error}) => {
 }
 
 export default SelectInput
+
+SelectInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired
+}

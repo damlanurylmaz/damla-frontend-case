@@ -1,4 +1,5 @@
-import { Form, Input, Typography } from 'antd'
+import { Input, Typography } from 'antd'
+import PropTypes from "prop-types"
 
 const TextInput = ({label, value, onChange, error}) => {
 
@@ -12,3 +13,10 @@ const TextInput = ({label, value, onChange, error}) => {
 }
 
 export default TextInput
+
+TextInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired
+}
