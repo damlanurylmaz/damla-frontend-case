@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TasksActions } from '../Pages/Tasks/Store/Tasks.slice';
 import TextInput from './Input/TextInput';
 import SelectInput from './Input/SelectInput';
+import { useEffect, useState } from 'react';
 
 const urgencyOptions = [
     {
@@ -37,13 +38,39 @@ const statusOptions = [
 const EditModal = () => {
   const dispatch = useDispatch();
   const isOpenEditModal = useSelector((state) => state.tasks.isOpenEditModal);
+  const editedTask = useSelector((state) => state.tasks.editedTask);
+  const [formValue, setFormValue] = useState({
+    title: '',
+    description: '',
+    urgency: '',
+    status: ''
+  })
 
   const handleOk = () => {
     dispatch(TasksActions.setIsOpenEditModal(false));
+    dispatch(TasksActions.updateTask({...editedTask, ...formValue}));
   };
+
   const handleCancel = () => {
     dispatch(TasksActions.setIsOpenEditModal(false));
   };
+
+  const handleFormValue = (key, value) => {
+    setFormValue({...formValue, [key]: value});
+  };
+
+  useEffect(() => {
+    if(isOpenEditModal) {
+      setFormValue({
+        title: editedTask.title,
+        description: editedTask.description,
+        urgency: editedTask.urgency,
+        status: editedTask.status
+      })
+    }
+    
+  }, [isOpenEditModal, editedTask]);
+
   return (
     <>
       <Modal
@@ -62,20 +89,28 @@ const EditModal = () => {
         <TextInput 
             label='Title'
             required
+            value={formValue.title}
+            onChange={(e) => handleFormValue('title', e.target.value)}
         />
         <TextInput 
             label='Description'
             required
+            value={formValue.description}
+            onChange={(e) => handleFormValue('description', e.target.value)}
         />
         <SelectInput
             label='Urgency'
             options={urgencyOptions}
             required
+            value={formValue.urgency}
+            onChange={(e) => handleFormValue('urgency', e.target.value)}
         />
         <SelectInput
             label='Change Status'
             options={statusOptions}
             required={false}
+            onChange={(val) => handleFormValue('status', statusOptions.find((option) => option.value === val).label)}
+            value={formValue.status}
         />
       </div>  
       </Modal>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TasksActions } from '../Pages/Tasks/Store/Tasks.slice';
 import TextInput from './Input/TextInput';
 import SelectInput from './Input/SelectInput';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 const urgencyOptions = [
   {
@@ -31,7 +31,7 @@ const CreateModal = () => {
 
   const handleOk = () => {
     dispatch(TasksActions.setIsOpenCreateModal(false));
-    dispatch(TasksActions.addTask({...formValue, status: 'NEW', date: Date()}));
+    dispatch(TasksActions.addTask({...formValue, id:  crypto.randomUUID(),  status: 'New', date: Date()}));
     setFormValue({title: '', description: '', urgency: ''})
   };
   const handleCancel = () => {
@@ -76,7 +76,7 @@ const CreateModal = () => {
             options={urgencyOptions}
             required
             value={formValue.urgency}
-            onChange={(val) => handleFormValue('urgency', val)}
+            onChange={(val) => handleFormValue('urgency', urgencyOptions.find((option) => option.value === val).label)}
         />
       </div>  
       </Modal>

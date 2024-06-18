@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     tasks: [],
     isOpenCreateModal: false,
-    isOpenEditModal: false
+    isOpenEditModal: false,
+    editedTask: {}
 };
 
 const tasksSlice = createSlice({
@@ -21,6 +22,17 @@ const tasksSlice = createSlice({
     },
     setIsOpenEditModal: (state, action) => {
       state.isOpenEditModal = action.payload
+    },
+    setEditedTask: (state, action) => {
+      state.editedTask = action.payload
+    },
+    updateTask: (state, action) => {
+      state.tasks = state.tasks.map((task) => {
+        if(task.id === action.payload.id) {
+          return action.payload
+        }
+        return task
+      })
     }
   },
 })

@@ -1,25 +1,26 @@
-import { Draggable } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
 import '../Pages/Tasks/Style/Tasks.scss';
 import { useSelector } from 'react-redux';
+import { TasksActions } from '../Pages/Tasks/Store/Tasks.slice';
 
-const TaskCard = () => {
-  const {tasks} = useSelector((state) => state.tasks);  
+const TaskCard = ({task}) => {
+  const dispatch = useDispatch();
+
+
+  const handleEditModal = () => {
+    dispatch(TasksActions.setIsOpenEditModal(true));
+    dispatch(TasksActions.setEditedTask(task));
+  };
 
   return (
-    <div className="card-wrapper">
-        {
-            tasks.map((element) => (
-                <div key={element.id} className='task-contain'>
-                    <div className='title'>
-                        <span>Title</span>
-                    </div>
-                    <div className='task-date'>
-                        <div>Date/Time</div>
-                        <div>Status</div>
-                    </div>
-                </div>
-            ))
-        }
+    <div key={task.id} className='task-contain' onClick={handleEditModal}>
+        <div className='title'>
+            <span>{task.title}</span>
+        </div>
+        <div className='task-date'>
+            <div>{new Date(task.date).toLocaleDateString("tr-TR")}</div>
+            <div>{task.urgency}</div>      
+        </div>
     </div>
   )
 }

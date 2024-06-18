@@ -2,27 +2,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 50px;
     .header {
       margin-bottom: 20px;
     }
     .add-new-task {
       margin-bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
     }
     .task-card-container {
       display: flex;
       gap: 30px;
       width: 100%;
+      border-radius: 10px;
+      padding: 20px;
       .status-card {
         flex: 1;
-        border: 1px solid #484747;
         padding: 15px;
         border-radius: 15px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       }
     }
   }
 
 .task-contain {
-    border: 1px solid #484747;
     padding: 15px;
     border-radius: 10px;
     display: flex;
