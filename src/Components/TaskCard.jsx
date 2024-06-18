@@ -29,7 +29,7 @@ const TaskCard = ({task}) => {
                   <span>{task.title}</span>
               </div>
               <div className='task-date'>
-                  <div>{new Date(task.date).toLocaleDateString("tr-TR")}</div>
+                  <div>Date: {new Date(task.date).toLocaleDateString("tr-TR")}</div>
                   <div data-urgency={task.urgency} className='urgency'>{task.urgency}</div>      
               </div>
             </div>

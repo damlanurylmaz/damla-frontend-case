@@ -53,6 +53,7 @@ const Tasks = () => {
               <div className='status-card'> 
                   <div className='status-name'>
                     <h2>New</h2>
+                    <h3>Total: {tasks.filter((task) => task.status === 'New').length}</h3>
                   </div>
                   <Droppable droppableId='New' direction='vertical'>
                     {
@@ -67,6 +68,7 @@ const Tasks = () => {
               <div className='status-card'> 
                   <div className='status-name'>
                     <h2>Inprogress</h2>
+                    <h3>Total: {tasks.filter((task) => task.status === 'Inprogress').length}</h3>
                   </div>
                   <Droppable droppableId='Inprogress' direction='vertical'>
                     {
@@ -81,6 +83,7 @@ const Tasks = () => {
               <div className='status-card'> 
                   <div className='status-name'>
                     <h2>Done</h2>
+                    <h3>Total: {tasks.filter((task) => task.status === 'Done').length}</h3>
                   </div>
                   <Droppable droppableId='Done' direction='vertical'>
                     {
