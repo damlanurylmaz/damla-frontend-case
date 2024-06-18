@@ -1,6 +1,6 @@
 import { Form, Input, Typography } from 'antd'
 
-const TextInput = ({label, value, onChange, required, error}) => {
+const TextInput = ({label, value, onChange, error}) => {
 
   return (
     <div>

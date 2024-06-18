@@ -93,23 +93,20 @@ const CreateModal = () => {
       >
       <div className='form-container'>
         <TextInput
-            label='Title'
-            required
+            label='* Title'
             value={formValue.title}
             onChange={(e) => handleFormValue('title', e.target.value)}
             error={errors.title}
         />
         <TextInput 
-            label='Description'
-            required
+            label='* Description'
             value={formValue.description}
             onChange={(e) => handleFormValue('description', e.target.value)}
             error={errors.description}
         />
         <SelectInput
-            label='Urgency'
+            label='* Urgency'
             options={urgencyOptions}
-            required
             value={formValue.urgency}
             onChange={(val) => handleFormValue('urgency', urgencyOptions.find((option) => option.value === val).label)}
             error={errors.urgency}
