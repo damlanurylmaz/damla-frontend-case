@@ -103,7 +103,7 @@ const EditModal = () => {
             options={urgencyOptions}
             required
             value={formValue.urgency}
-            onChange={(e) => handleFormValue('urgency', e.target.value)}
+            onChange={(val) => handleFormValue('urgency', urgencyOptions.find((option) => option.value === val).label)}
         />
         <SelectInput
             label='Change Status'

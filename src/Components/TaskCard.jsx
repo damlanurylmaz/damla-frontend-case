@@ -13,13 +13,18 @@ const TaskCard = ({task}) => {
   };
 
   return (
-    <div key={task.id} className='task-contain' onClick={handleEditModal}>
+    <div 
+      key={task.id} 
+      className='task-contain' 
+      onClick={handleEditModal}
+      data-status={task.status}
+    >
         <div className='title'>
             <span>{task.title}</span>
         </div>
         <div className='task-date'>
             <div>{new Date(task.date).toLocaleDateString("tr-TR")}</div>
-            <div>{task.urgency}</div>      
+            <div data-urgency={task.urgency} className='urgency'>{task.urgency}</div>      
         </div>
     </div>
   )

@@ -45,13 +45,17 @@ const Tasks = () => {
                 <div className='status-name'>
                   <h2>Inprogress</h2>
                 </div>
-                {tasks.filter((task) => task.status === 'Inprogress').map((task) => <TaskCard key={task.id} task={task}/>)}
+                <div className='task-wrapper'>
+                  {tasks.filter((task) => task.status === 'Inprogress').map((task) => <TaskCard key={task.id} task={task}/>)}
+                </div>
             </div>
             <div className='status-card'> 
                 <div className='status-name'>
                   <h2>Done</h2>
                 </div>
-                {tasks.filter((task) => task.status === 'Done').map((task) => <TaskCard key={task.id} task={task}/>)}
+                <div className='task-wrapper'>
+                  {tasks.filter((task) => task.status === 'Done').map((task) => <TaskCard key={task.id} task={task}/>)}
+                </div>
             </div>
         </div>
     </div>

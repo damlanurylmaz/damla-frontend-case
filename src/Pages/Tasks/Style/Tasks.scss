@@ -23,6 +23,40 @@
         padding: 15px;
         border-radius: 15px;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        .task-wrapper {
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .task-contain {
+            &[data-status='New'] {
+              background-color: rgb(180, 213, 255); 
+            }
+            
+            &[data-status='Inprogress'] {
+              background-color: rgb(254, 241, 145); 
+            }
+            
+            &[data-status='Done'] {
+              background-color: rgb(174, 226, 177);
+            }
+            .task-date {
+              .urgency {
+                &[data-urgency='Urgent'] {
+                  color: red;
+                }
+                
+                &[data-urgency='High'] {
+                  color: orange;
+                }
+                
+                &[data-urgency='Low'] {
+                  color: blue;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
